@@ -1,6 +1,7 @@
 [
     {
         "file": "hill.xml",
-        "author": "Unknown"
+        "hills": ["Zakopane HS105", "Zakopane HS70", "Zakopane HS40", "Zakopane HS25", "Zakopane HS15"],
+        "author": "Jonek2208"
     }
 ]
