@@ -20,6 +20,7 @@
     <h1>Hills:</h1>
     <ul id="hillsList"></ul>
     <script>
+        // let HOST = '..'
         let HOST = 'https://raw.githubusercontent.com/ewintergames/open-ski-jumping-assets/main'
 
         function makeHillsList(hillsJson) {
@@ -29,13 +30,13 @@
                 let listItem = document.createElement('li')
                 listItem.innerHTML = `<a href="${HOST}/hills/${hill.file}" download>${hill.file}</a> Author: ${hill.author}
                 <ol></ol>`
+                let ol = listItem.querySelector('ol')
                 hill.hills.forEach(it => {
                     let li = document.createElement('li')
                     li.innerHTML = it
-                    listItem.appendChild(li)
+                    ol.appendChild(li)
                 })
-                let elem = listItem.querySelector('ol')
-                elem.appendChild(listItem)
+                hillsListElem.appendChild(listItem)
             })
         }
 
