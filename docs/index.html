@@ -34,7 +34,8 @@
                     li.innerHTML = it
                     listItem.appendChild(li)
                 })
-                hillsListElem.appendChild(listItem)
+                let elem = listItem.querySelector('ol')
+                elem.appendChild(listItem)
             })
         }
 
