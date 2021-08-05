@@ -19,36 +19,38 @@
 <body>
     <h1>Hills:</h1>
     <ul id="hillsList"></ul>
-        <script>
-            function makeHillsList(hillsJson) {
-                let hillsListElem = document.querySelector('#hillsList')
-                let hillsList = JSON.parse(hillsJson)
-                hillsList.forEach(hill => {
-                    let listItem = document.createElement('li')
-                    listItem.innerHTML = `<a href="../hills/${hill.file}" download>${hill.file}</a> Author: ${hill.author}
-                <ol></ol>`
-                    hill.hills.forEach(it => {
-                        let li = document.createElement('li')
-                        li.innerHTML = it
-                        listItem.appendChild(li)
-                    })
-                    hillsListElem.appendChild(listItem)
-                })
-            }
+    <script>
+        let HOST = 'https://raw.githubusercontent.com/ewintergames/open-ski-jumping-assets/main'
 
-            let request = new XMLHttpRequest()
-            request.open('GET', `../hills/list.json`)
-            request.send(null)
-            request.onreadystatechange = function () {
-                if (request.readyState === 4) {
-                    if (request.status === 200 || request.status == 0) {
-                        console.log(request.response)
-                        makeHillsList(request.response)
-                    }
+        function makeHillsList(hillsJson) {
+            let hillsListElem = document.querySelector('#hillsList')
+            let hillsList = JSON.parse(hillsJson)
+            hillsList.forEach(hill => {
+                let listItem = document.createElement('li')
+                listItem.innerHTML = `<a href="${HOST}/hills/${hill.file}" download>${hill.file}</a> Author: ${hill.author}
+                <ol></ol>`
+                hill.hills.forEach(it => {
+                    let li = document.createElement('li')
+                    li.innerHTML = it
+                    listItem.appendChild(li)
+                })
+                hillsListElem.appendChild(listItem)
+            })
+        }
+
+        let request = new XMLHttpRequest()
+        request.open('GET', `${HOST}/hills/list.json`)
+        request.send(null)
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200 || request.status == 0) {
+                    console.log(request.response)
+                    makeHillsList(request.response)
                 }
             }
+        }
 
-        </script>
+    </script>
 </body>
 
 </html>
